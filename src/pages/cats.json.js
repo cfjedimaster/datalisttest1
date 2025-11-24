@@ -19,11 +19,15 @@ export async function GET({ params, request, locals }) {
   const cats = catsData.items.map(c => {
     return {
       ...c.fieldData,
-      id:c.id,
-      "doineedtopublish":false
+      id:c.id
     }
   });
 
-  return new Response(JSON.stringify(cats))
+  return new Response(JSON.stringify(cats), {
+    status: 200,
+    headers: {
+        'Content-Type': 'application/json'
+    }
+  });
 }
 
