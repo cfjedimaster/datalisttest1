@@ -22,6 +22,10 @@ const cats = catsData.items.map(c => {
   }
 });
 
+export const config = {
+    runtime: "edge",
+};
+
 export function GET({ params, request }) {
   return new Response(JSON.stringify(cats))
 }
