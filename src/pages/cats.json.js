@@ -3,7 +3,7 @@ const SITE = import.meta.env.WEBFLOW_SITE_ID;
 const KEY = import.meta.env.CMSKEY;
 const CATS = "691b3bd2bb9b164290a66b91";
 
-console.log("Fetching cats data");
+console.log("Fetching cats data 3");
 console.log("ensuring key works", KEY);
 const catsReq = await fetch(`https://api.webflow.com/v2/collections/${CATS}/items/live`, {
   headers: {
