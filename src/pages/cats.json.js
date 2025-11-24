@@ -1,24 +1,15 @@
-
-const SITE = import.meta.env.WEBFLOW_SITE_ID;
-const KEY = import.meta.env.CMSKEY;
 const CATS = "691b3bd2bb9b164290a66b91";
 
-console.log("Fetching cats data 6");
-//console.log("ensuring key works", KEY);
-//console.log("trying to dump it all", SITE);
-//console.log(JSON.stringify(import.meta.env));
-
-
+/*
 export const config = {
     runtime: "edge",
 };
+*/
 
 export async function GET({ params, request, locals }) {
 
-  console.log('new fucking logic');
-  console.log(JSON.stringify(locals.runtime.env));
   let KEY = locals.runtime.env.CMSKEY;
-  
+
   const catsReq = await fetch(`https://api.webflow.com/v2/collections/${CATS}/items/live`, {
     headers: {
       "Authorization": `Bearer ${KEY}`,
