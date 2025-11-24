@@ -1,10 +1,9 @@
 const CATS = "691b3bd2bb9b164290a66b91";
 
-/*
 export const config = {
     runtime: "edge",
 };
-*/
+
 
 export async function GET({ params, request, locals }) {
 
@@ -20,7 +19,8 @@ export async function GET({ params, request, locals }) {
   const cats = catsData.items.map(c => {
     return {
       ...c.fieldData,
-      id:c.id
+      id:c.id,
+      "doineedtopublish":false
     }
   });
 
