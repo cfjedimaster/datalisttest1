@@ -6,10 +6,15 @@ export const config = {
 
 
 export async function GET({ params, request, locals }) {
-
+  let url = new URL(request.url);
+  let qs = Object.fromEntries(url.searchParams);
+  let name = qs.name || "";
   let KEY = locals.runtime.env.CMSKEY;
 
-  const catsReq = await fetch(`https://api.webflow.com/v2/collections/${CATS}/items/live`, {
+  let filter = '';
+  if(name !== '') filter = '?name=' + encodeURIComponent(name);
+
+  const catsReq = await fetch(`https://api.webflow.com/v2/collections/${CATS}/items/live${filter}`, {
     headers: {
       "Authorization": `Bearer ${KEY}`,
     }
