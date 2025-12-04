@@ -4,6 +4,35 @@ export const config = {
     runtime: "edge",
 };
 
+// I take an array of raw CMS items and attempt to correct options
+// This is a work in progress and could be improved. For now, I use a hard coded
+// set of mappings
+const optionMappings = {
+  "gender": [
+    {
+      "name": "Male",
+      "id": "18e9905214ba268d86ae1222acd66ad8"
+    },
+    {
+      "name": "Female",
+      "id": "e0331b12f028facd7e22b5e4246a882c"
+    }
+  ]
+}
+
+const mapOptions = item => {
+
+  for(let k of item) {
+    if(optionMappings[k]) {
+      for(let o of optionMappings[k]) {
+        if(item[k] === o.id) {
+          item[k] = o.name;
+        }
+      }
+    }
+  }
+
+}
 
 export async function GET({ params, request, locals }) {
   let url = new URL(request.url);
@@ -23,7 +52,7 @@ export async function GET({ params, request, locals }) {
 
   const cats = catsData.items.map(c => {
     return {
-      ...c.fieldData,
+      ...mapOptions(c.fieldData),
       id:c.id
     }
   });
