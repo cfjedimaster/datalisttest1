@@ -21,8 +21,7 @@ const optionMappings = {
 }
 
 const mapOptions = item => {
-
-  for(let k of item) {
+  for(let k in item) {
     if(optionMappings[k]) {
       for(let o of optionMappings[k]) {
         if(item[k] === o.id) {
@@ -31,7 +30,7 @@ const mapOptions = item => {
       }
     }
   }
-
+  return item;
 }
 
 export async function GET({ params, request, locals }) {
