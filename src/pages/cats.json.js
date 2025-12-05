@@ -42,7 +42,7 @@ export async function GET({ params, request, locals }) {
   let filter = '';
   if(name !== '') filter = '?name=' + encodeURIComponent(name);
 
-  const catsReq = await fetch(`https://api.webflow.com/v2/collections/${CATS}/items/live${filter}`, {
+  const catsReq = await fetch(`https://api-cdn.webflow.com/v2/collections/${CATS}/items/live${filter}`, {
     headers: {
       "Authorization": `Bearer ${KEY}`,
     }
